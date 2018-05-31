@@ -24,19 +24,25 @@ long nCk(int n, int k){
 }
 
 int main(int argc, const char * argv[]){
+    FILE *fp;
+    fp = fopen("pascalTriangle.txt", "w");
+    
     int lines = atoi(argv[1]);
     
     for (int i = 0; i < lines; i++){
         int tabNum = lines - i;
         for (int j = 0; j < tabNum; j++) {
             printf(" ");
+            fprintf(fp, " ");
         }
         for (int k = 0; k <= i; k++){
-            
-            printf("%ld ", nCk(i, k));
-            
+            long res = nCk(i, k);
+            printf("%ld ", res);
+            fprintf(fp, "%ld ", res);
         }
+        fprintf(fp, "\n");
         printf("\n");
     }
+    fclose(fp);
     return 0;
 }
